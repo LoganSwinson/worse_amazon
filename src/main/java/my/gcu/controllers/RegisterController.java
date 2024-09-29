@@ -32,7 +32,7 @@ public class RegisterController
         }
 
         System.out.println(String.format("Form with a Username of %s and Password of %s", userModel.getUsername(), userModel.getPassword()));
-        return "home";
+        return "login";
     }
 
 }
