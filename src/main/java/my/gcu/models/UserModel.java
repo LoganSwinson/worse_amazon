@@ -1,4 +1,4 @@
-package my.gcu.worse_amazon.Models;
+package my.gcu.models;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
