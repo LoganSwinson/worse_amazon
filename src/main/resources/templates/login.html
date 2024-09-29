@@ -1,56 +1,29 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Login Page</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layouts/defaultTemplate}">
 <body>
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(0,0,0,0.5);">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Pages</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" 
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/home}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/products}">Products</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/cart}">Cart</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/support}">Support</a>
-                </li>
-            </ul>
+    <div layout:fragment="content">
+        <h2 align="center">Login</h2>
+        <div class="form-container">
+            <form th:action="@{/doLogin}" th:object="${loginModel}" method="post">
+                <table>
+                    <tr>
+                        <td>User Name:</td>
+                        <td><input type="text" th:field="*{username}" /></td>
+                        <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td><input type="password" th:field="*{password}" /></td>
+                        <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit">Submit</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
         </div>
     </div>
-</nav>
-<!-- END NAVBAR -->
-    <h2 th:text="${title}"></h2>
-    <form th:action="@{/doLogin}" th:object="${loginModel}" method="post">
-        <table>
-            <tr>
-                <td>User Name:</td>
-                <td><input type="text" th:field="*{username}"/></td>
-                <td th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></td>
-            </tr>
-            <tr>
-                <td>Password:</td>
-                <td><input type="password" th:field="*{password}"/></td>
-                <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></td>
-            </tr>
-            <tr>
-                <td colspan="2"><button type="submit">Submit</button></td>
-            </tr>
-        </table>
-    </form>
 </body>
 </html>
