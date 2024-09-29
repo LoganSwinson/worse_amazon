@@ -25,12 +25,14 @@ public class RegisterController
     @PostMapping("/register")   
     public String doRegister(@Valid @ModelAttribute("userModel") UserModel userModel, BindingResult bindingResult, Model model)
     {
+        // If the input data was invalid, refresh the page
         if (bindingResult.hasErrors())
         {
             model.addAttribute("title", "Register Form");
             return "register";
         }
 
+        // Prints out user's username and password upon successful login in the console
         System.out.println(String.format("Form with a Username of %s and Password of %s", userModel.getUsername(), userModel.getPassword()));
 
         // Redirect to login after successful registration
