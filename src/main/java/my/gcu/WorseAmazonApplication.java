@@ -1,4 +1,4 @@
-package my.gcu.worse_amazon;
+package my.gcu;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

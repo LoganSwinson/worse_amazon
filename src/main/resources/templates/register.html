@@ -1,55 +1,70 @@
 <!DOCTYPE html>
-<html xmls:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>My Program</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <h1>Register User</h2>
-        <form action="#" th:action="@{register}" th:object="${userModel}" method="post">
-            <table>
-                <tr>
-                    <td>First Name:</td>
-                    <td><input type="text" th:field="*{firstName}"></td>
-                    <td><h5 style="color:red" th:if"${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</h5></td>
-                </tr>
-                <tr>
-                    <td>Last Name:</td>
-                    <td><input type="text" th:field="*{lastName}"></td>
-                    <td><h5 style="color:red" th:if"${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</h5></td>
-                </tr>
-                <tr>
-                    <td>Phone Number:</td>
-                    <td><input type="text" th:field="*{phoneNumber}"></td>
-                    <td><h5 style="color:red" th:if"${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Phone Number Error</h5></td>
-                </tr>
-                <tr>
-                    <td>Email Address:</td>
-                    <td><input type="text" th:field="*{emailAddress}"></td>
-                    <td><h5 style="color:red" th:if"${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}">E-Mail Error</h5></td>
-                </tr>
-                <tr>
-                    <td>Username:</td>
-                    <td><input type="text" th:field="*{username}"></td>
-                    <td><h5 style="color:red" th:if"${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</h5></td>
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td><input type="password" th:field="*{password}"></td>
-                    <td><h5 style="color:red" th:if"${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</h5></td>
-                </tr>
-                <tr>
-                    <td colspan="2"><input type="submit" value="Submit"></td>
-                </tr>
-            </table>
-        </form>
-        
-        <script src="" async defer></script>
-    </body>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layouts/defaultTemplate}">
+
+<body>
+    <div layout:fragment="content">
+        <h2 align="center">Register User</h2>
+        <div class="form-container">
+            <form action="#" th:action="@{/register}" th:object="${userModel}" method="post">
+
+                <table>
+                    <tr>
+                        <td>First Name:</td>
+                        <td><input type="text" th:field="*{firstName}"></td>
+                        <td>
+                            <h5 style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
+                                First Name Error</h5>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Last Name:</td>
+                        <td><input type="text" th:field="*{lastName}"></td>
+                        <td>
+                            <h5 style="color:red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last
+                                Name Error</h5>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Phone Number:</td>
+                        <td><input type="text" th:field="*{phoneNumber}"></td>
+                        <td>
+                            <h5 style="color:red" th:if="${#fields.hasErrors('phoneNumber')}"
+                                th:errors="*{phoneNumber}">Phone Number Error</h5>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Email Address:</td>
+                        <td><input type="text" th:field="*{emailAddress}"></td>
+                        <td>
+                            <h5 style="color:red" th:if="${#fields.hasErrors('emailAddress')}"
+                                th:errors="*{emailAddress}">E-Mail Error</h5>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Username:</td>
+                        <td><input type="text" th:field="*{username}"></td>
+                        <td>
+                            <h5 style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">
+                                Username Error</h5>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td><input type="password" th:field="*{password}"></td>
+                        <td>
+                            <h5 style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+                                Password Error</h5>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input type="submit" value="Submit"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</body>
+
 </html>
 
 <!-- DEBUGGING - Copy & Paste the lines below into "application.properties" to get debug information form html errors inside the console

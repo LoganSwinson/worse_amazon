@@ -32,7 +32,8 @@ public class RegisterController
         }
 
         System.out.println(String.format("Form with a Username of %s and Password of %s", userModel.getUsername(), userModel.getPassword()));
-        return "login";
-    }
 
+        // Redirect to login after successful registration
+        return "redirect:/login";
+    }
 }
