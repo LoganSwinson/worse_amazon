@@ -18,7 +18,7 @@ public class UserModel
     private String username;
 
     @NotNull(message="Password is a required field")
-    @Size(min=1, max=32, message="Password must be between 1-32 characters long")
+    @Size(min=5, max=32, message="Password must be between 5-32 characters long")
     private String password;
 
     @NotNull(message="E-Mail is a required field")
