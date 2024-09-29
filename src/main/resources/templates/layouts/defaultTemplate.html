@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layouts/common}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title th:text="${title}"></title>
+</head>
+<body>
+
+<div th:replace="layouts/common :: header"></div>
+
+<section layout:fragment="content">
+    <div class="container">
+        <!-- Content will be injected here -->
+    </div>
+</section>
+
+<div th:replace="layouts/common :: footer"></div>
+
+</body>
+</html>
