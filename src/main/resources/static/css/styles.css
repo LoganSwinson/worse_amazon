@@ -1,0 +1,62 @@
+/* Apply a global background color */
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #7b96c9;
+    font-family: Arial, sans-serif;
+}
+
+/* Style the navbar */
+.navbar {
+    background-color: #343a40;
+}
+
+.navbar .navbar-brand, .navbar .nav-link {
+    color: white;  /* Set navbar text color to white */
+}
+
+.navbar .nav-link:hover {
+    color: #d4d4d4;
+}
+
+/* Center the form container horizontally */
+.form-container {
+    display: flex;
+    justify-content: center; /* Horizontally center the form */
+    padding-top: 50px; /* Add some padding from the top */
+}
+
+/* Customize form styling */
+form {
+    text-align: center;
+    padding: 20px;
+    display: inline-block;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Input field styles */
+form input[type="text"], form input[type="password"] {
+    color: rgb(68, 62, 62);
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+/* Submit button styling */
+form button {
+    background-color: #343a40;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #292929;
+}
