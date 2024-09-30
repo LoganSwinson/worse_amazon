@@ -9,12 +9,12 @@
                     <tr>
                         <td>User Name:</td>
                         <td><input type="text" th:field="*{username}" /></td>
-                        <td style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></td>
+                        <td><h5 style="color:red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></h5></td>
                     </tr>
                     <tr>
                         <td>Password:</td>
                         <td><input type="password" th:field="*{password}" /></td>
-                        <td style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></td>
+                        <td><h5 style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></h5></td>
                     </tr>
                     <tr>
                         <td colspan="2">
