@@ -28,7 +28,9 @@ public class LoginController {
             // If there are errors, return to the login page
             return "login";
         }
-        return "home"; 
+
+        // A successful login sends the user to the "Products" page
+        return "products"; 
     }
     
 }
