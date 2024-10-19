@@ -4,6 +4,31 @@
     <div layout:fragment="content">
         <h1 align="center">Admin Page</h1>
         <p align="center">Change Products</p>
+        <div class="form-container">
+            <form th:action="@{/admin/createProduct}" th:object="${product}" method="post">
+                <table>
+                    <tr>
+                        <td>Product Name:</td>
+                        <td><input type="text" th:field="*{name}" placeholder="Enter product name" required /></td>
+                        <td><h5 style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></h5></td>
+                    </tr>
+                    <tr>
+                        <td>Price:</td>
+                        <td><input type="number" th:field="*{price}" placeholder="Enter price" required step="0.01" /></td>
+                        <td><h5 style="color:red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></h5></td>
+                    </tr>
+                    <tr>
+                        <td>Description:</td>
+                        <td><textarea th:field="*{description}" placeholder="Enter product description"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit">Create Product</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
     </div>
 </body>
 </html>
