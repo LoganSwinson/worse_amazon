@@ -1,6 +1,6 @@
 package my.gcu.interfaces;
 
-public interface LoginServiceInterface
+public interface ServiceInterface
 {
     public void init();
     public void destroy();

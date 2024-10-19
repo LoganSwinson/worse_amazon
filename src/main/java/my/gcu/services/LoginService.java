@@ -1,10 +1,10 @@
 package my.gcu.services;
 
 import org.springframework.validation.BindingResult;
-import my.gcu.interfaces.LoginServiceInterface;
+import my.gcu.interfaces.ServiceInterface;
 import my.gcu.models.LoginModel;
 
-public class LoginService implements LoginServiceInterface
+public class LoginService implements ServiceInterface
 {
     @Override
     public void init()
