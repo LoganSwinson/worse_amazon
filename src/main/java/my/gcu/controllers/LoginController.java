@@ -23,13 +23,15 @@ public class LoginController
     {
         model.addAttribute("title", "Login Form");
         model.addAttribute("loginModel", new LoginModel());
+        model.addAttribute("loginServiceBean", loginServiceBean);
         return "login";  // Return the login.html template
     }
 
-   @PostMapping("/doLogin")
+    @PostMapping("/doLogin")
     public String doLogin(@Valid @ModelAttribute("loginModel") LoginModel loginModel, BindingResult bindingResult, Model model)
     {
-        return loginServiceBean.validateLogin(bindingResult, loginModel);
+        // This redirects now so that thyme leaf variables will properly work on the "products" page
+        return "redirect:/" + loginServiceBean.validateLogin(bindingResult, loginModel);
     }
     
 }
