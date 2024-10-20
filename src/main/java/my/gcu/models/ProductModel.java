@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Positive;
 
 public class ProductModel {
     private int id;
+    private static int maxId;
 
     @NotEmpty(message = "Product name is required")
     private String name;
@@ -15,11 +16,11 @@ public class ProductModel {
     private String description;
 
     // Constructors
-    public ProductModel() {
-    }
+    public ProductModel() {}
 
-    public ProductModel(int id, String name, double price, String description) {
-        this.id = id;
+    public ProductModel(String name, double price, String description)
+    {
+        this.id = ++maxId;
         this.name = name;
         this.price = price;
         this.description = description;
@@ -30,8 +31,14 @@ public class ProductModel {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public static void setMaxId(int newMaxId)
+    {
+        maxId = newMaxId;
+    }
+
+    public void updateId()
+    {
+        this.id = ++maxId;
     }
 
     public String getName() {

@@ -54,6 +54,12 @@ public class LoginService implements ServiceInterface
         return false;
     }
 
+    public Model modelCheckAdmin(Model model)
+    {
+        model.addAttribute("isAdmin", this.getIsAdmin());
+        return model;
+    }
+
     public boolean getIsLoggedIn()
     {
         return isLoggedIn;

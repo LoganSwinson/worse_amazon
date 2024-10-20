@@ -12,4 +12,9 @@ public class SpringConfig
         return new LoginService();
     }
 
+    @Bean(name="productService", initMethod="init", destroyMethod="destroy")
+    public ProductService getProductService()
+    {
+        return new ProductService();
+    }
 }
