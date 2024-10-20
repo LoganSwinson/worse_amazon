@@ -2,8 +2,40 @@
 <html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layouts/defaultTemplate}">
 <body>
     <div layout:fragment="content">
-        <h1 align="center">Admin Page</h1>
-        <p align="center">Change Products</p>
+    <h1 align="center">Admin Page</h1>
+
+    <!-- IF (logged in as admin) -->
+    <div th:if = "${isAdmin}">
+        <p align="center">You have successfully logged in as an Admin!</p>
+        <br>
+
+    <!-- VIEWING PRODUCTS -->
+        <h2 align="center">Current Products:</h2>
+        <table align="center" style="width:50%">
+            <thead>
+                <tr>
+                    <th style="text-align:center">ID</th>
+                    <th style="text-align:center">Name</th>
+                    <th style="text-align:center">Price</th>
+                    <th style="text-align:center">Description</th>
+                <th>
+            </thead>
+            <tbody>
+                <tr th:if="${#lists.isEmpty(productList)}">
+                    <td style="text-align: center" colspan="4"> No Orders Available </td>
+                </tr>
+                    <tr th:each="product : ${productList}">
+                    <td style="text-align:center"><h5 th:text="${product.id}"></h5></td>
+                    <td style="text-align:center"><h5 th:text="${product.name}"></h5></td>
+                    <td style="text-align:center"><h5 th:text="${product.price}"></h5></td>
+                    <td style="text-align:center"><h5 th:text="${product.description}"></h5></td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+
+    <!-- ADDING PRODUCTS -->
+        <h2 align="center">Add Product:</h2>
         <div class="form-container">
             <form th:action="@{/admin/createProduct}" th:object="${product}" method="post">
                 <table>
@@ -29,6 +61,15 @@
                 </table>
             </form>
         </div>
+    </div>
+
+    <!-- ELSE -->
+    <div th:unless = "${isAdmin}">
+        <p align="center">You have not logged into an admin account, please login as one to view this page. Click 
+            <a href="/login">here</a> to visit the login page.
+        </p>
+    </div>
+    
     </div>
 </body>
 </html>
