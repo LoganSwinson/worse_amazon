@@ -2,6 +2,7 @@ package my.gcu.data.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
+
 import my.gcu.models.ProductModel;
 
 @Table("PRODUCTS")

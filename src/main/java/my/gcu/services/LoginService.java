@@ -1,72 +1,71 @@
 package my.gcu.services;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+
+import my.gcu.data.entity.UserEntity;
+import my.gcu.data.entity.repository.UserRepository;
 import my.gcu.interfaces.ServiceInterface;
 import my.gcu.models.LoginModel;
 
-public class LoginService implements ServiceInterface
-{
+@Service
+public class LoginService implements ServiceInterface {
+
+    @Autowired
+    private UserRepository userRepository;
+
     private boolean isLoggedIn;
     private boolean isAdmin;
 
     @Override
-    public void init()
-    {
+    public void init() {
         System.out.println("Login Service Bean Initialized");
         isLoggedIn = false;
         isAdmin = false;
-        return;
     }
 
     @Override
-    public void destroy()
-    {
+    public void destroy() {
         System.out.println("Login Service Bean Destroyed");
-        return;
     }
 
-    public String validateLogin(BindingResult bindingResult, LoginModel loginModel)
-    {
-        // If there are errors, return to the login page
-        if (bindingResult.hasErrors())
+    public String validateLogin(BindingResult bindingResult, LoginModel loginModel) {
+        if (bindingResult.hasErrors()) {
             return "login";
-        
-        // This lets other pages know that the user is logged in
-        isLoggedIn = true;
-
-        // Check if they are an admin
-        if (checkForAdmin(loginModel))
-        {
-            isAdmin = true;
-            return "admin";
         }
-        // A successful login sends the user to the "Products" page
-        return "products";
+    
+        // Check credentials in the database
+        Optional<UserEntity> user = userRepository.findByUsername(loginModel.getUsername());
+    
+        if (user.isPresent() && user.get().getPassword().equals(loginModel.getPassword())) {
+            isLoggedIn = true;
+            if (user.get().getUsername().equals("admin")) {
+                isAdmin = true;
+                return "admin";
+            }
+            return "products";
+        }
+    
+        // Invalid credentials
+        bindingResult.reject("loginError", "Invalid credentials"); 
+        return "login";
     }
+    
 
-    public boolean checkForAdmin(LoginModel loginModel)
-    {
-        // Hard coded Admin Login info
-        if (loginModel.getUsername().equals("admin") && loginModel.getPassword().equals("12345"))
-            return true;
-
-        return false;
-    }
-
-    public Model modelCheckAdmin(Model model)
-    {
+    public Model modelCheckAdmin(Model model) {
         model.addAttribute("isAdmin", this.getIsAdmin());
         return model;
     }
 
-    public boolean getIsLoggedIn()
-    {
+    public boolean getIsLoggedIn() {
         return isLoggedIn;
     }
 
-    public boolean getIsAdmin()
-    {
+    public boolean getIsAdmin() {
         return isAdmin;
     }
 }
