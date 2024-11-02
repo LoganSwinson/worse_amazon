@@ -54,6 +54,11 @@
                         <td><textarea th:field="*{description}" placeholder="Enter product description"></textarea></td>
                     </tr>
                     <tr>
+                        <td>Product Quantity:</td>
+                        <td><input type="text" th:field="*{quantity}" placeholder="Enter product quantity" required /></td>
+                        <td><h5 style="color:red" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></h5></td>
+                    </tr>
+                    <tr>
                         <td colspan="2">
                             <button type="submit">Create Product</button>
                         </td>
