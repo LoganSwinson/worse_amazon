@@ -26,15 +26,6 @@ public class ProductEntity
         this.quantity = -1;
     }
 
-    public ProductEntity(Integer id, String productName, double price, String description, Integer quantity)
-    {
-        this.id = id;
-        this.name = productName;
-        this.price = price;
-        this.description = description;
-        this.quantity = quantity;
-    }
-
     public ProductEntity(ProductModel productMod)
     {
         this.id = productMod.getId();
