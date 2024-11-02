@@ -8,7 +8,7 @@ import my.gcu.models.ProductModel;
 
 public class ProductService implements ServiceInterface
 {
-    List<ProductModel> productList;
+    private List<ProductModel> productList;
 
     @Override
     public void init()

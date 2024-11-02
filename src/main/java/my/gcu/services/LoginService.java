@@ -36,7 +36,7 @@ public class LoginService implements ServiceInterface
         isLoggedIn = true;
 
         // Check if they are an admin
-        if (isAdmin(loginModel))
+        if (checkForAdmin(loginModel))
         {
             isAdmin = true;
             return "admin";
@@ -45,7 +45,7 @@ public class LoginService implements ServiceInterface
         return "products";
     }
 
-    public boolean isAdmin(LoginModel loginModel)
+    public boolean checkForAdmin(LoginModel loginModel)
     {
         // Hard coded Admin Login info
         if (loginModel.getUsername().equals("admin") && loginModel.getPassword().equals("12345"))
