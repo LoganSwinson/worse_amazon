@@ -17,20 +17,22 @@ public class LoginService implements ServiceInterface
 {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository userRepo;
 
     private boolean isLoggedIn;
     private boolean isAdmin;
 
     @Override
-    public void init() {
+    public void init()
+    {
         System.out.println("Login Service Bean Initialized");
         isLoggedIn = false;
         isAdmin = false;
     }
 
     @Override
-    public void destroy() {
+    public void destroy()
+    {
         System.out.println("Login Service Bean Destroyed");
     }
 
@@ -40,7 +42,7 @@ public class LoginService implements ServiceInterface
             return "login";
     
         // Check credentials in the database
-        Optional<UserEntity> user = userRepository.findByUsername(loginModel.getUsername());
+        Optional<UserEntity> user = userRepo.findByUsername(loginModel.getUsername());
     
         // Validate if the user exists and the password matches
         if (user.isPresent() && user.get().getPassword().equals(loginModel.getPassword()))
@@ -64,16 +66,19 @@ public class LoginService implements ServiceInterface
     }
     
 
-    public Model modelCheckAdmin(Model model) {
+    public Model modelCheckAdmin(Model model)
+    {
         model.addAttribute("isAdmin", this.getIsAdmin());
         return model;
     }
 
-    public boolean getIsLoggedIn() {
+    public boolean getIsLoggedIn()
+    {
         return isLoggedIn;
     }
 
-    public boolean getIsAdmin() {
+    public boolean getIsAdmin()
+    {
         return isAdmin;
     }
 }

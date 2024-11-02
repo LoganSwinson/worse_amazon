@@ -48,11 +48,6 @@ public class ProductModel
         return id;
     }
 
-    public static void setMaxId(Integer newMaxId)
-    {
-        maxId = newMaxId;
-    }
-
     public String getName() {
         return name;
     }

@@ -6,9 +6,11 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan({ "my.gcu" })
-public class WorseAmazonApplication {
+public class WorseAmazonApplication
+{
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		SpringApplication.run(WorseAmazonApplication.class, args);
 	}
 

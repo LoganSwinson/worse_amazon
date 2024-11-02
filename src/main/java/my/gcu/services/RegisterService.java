@@ -28,19 +28,4 @@ public class RegisterService implements ServiceInterface
     {
         userRepo.save(new UserEntity(user));
     }
-
-    public int getHighestID()
-    {
-        int maxId = 0;
-        
-        var userEntities = userRepo.findAll();
-
-        for (UserEntity entity : userEntities)
-        {
-            if (entity.getId() > maxId)
-                maxId = entity.getId();
-        }
-
-        return maxId;
-    }
 }

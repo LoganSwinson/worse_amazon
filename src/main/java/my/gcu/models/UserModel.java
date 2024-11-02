@@ -51,11 +51,9 @@ public class UserModel
         this.password = user.getPassword();
         this.emailAddress = user.getEmailAddress();
         this.phoneNumber = user.getPhoneNumber();
-    }
 
-    public static void setMaxId(int newMax)
-    {
-        maxId = newMax;
+        if (this.id > maxId)
+            maxId = this.id;
     }
 
     public Integer getId()

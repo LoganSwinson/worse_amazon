@@ -44,19 +44,4 @@ public class ProductService implements ServiceInterface
 
         return productList;
     }
-
-    public int getHighestID()
-    {
-        int maxId = 0;
-        
-        var productEntities = productRepo.findAll();
-
-        for (ProductEntity entity : productEntities)
-        {
-            if (entity.getId() > maxId)
-                maxId = entity.getId();
-        }
-
-        return maxId;
-    }
 }
