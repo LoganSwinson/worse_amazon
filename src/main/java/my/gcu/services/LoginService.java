@@ -41,14 +41,20 @@ public class LoginService implements ServiceInterface {
         // Check credentials in the database
         Optional<UserEntity> user = userRepository.findByUsername(loginModel.getUsername());
     
-        if (user.isPresent() && user.get().getPassword().equals(loginModel.getPassword())) {
-            isLoggedIn = true;
-            if (user.get().getUsername().equals("admin")) {
-                isAdmin = true;
-                return "admin";
-            }
-            return "products";
-        }
+   // Validate if the user exists and the password matches
+   if (user.isPresent() && user.get().getPassword().equals(loginModel.getPassword())) {
+    isLoggedIn = true;
+
+    // Check if the username is "admin" to assign admin privileges
+    if ("admin".equalsIgnoreCase(user.get().getUsername())) {
+        isAdmin = true;
+        return "admin";  
+    }
+
+    // For non-admin users
+    isAdmin = false;
+    return "products";  
+}
     
         // Invalid credentials
         bindingResult.reject("loginError", "Invalid credentials"); 
