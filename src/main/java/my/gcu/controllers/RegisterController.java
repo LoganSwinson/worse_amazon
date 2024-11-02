@@ -1,5 +1,6 @@
 package my.gcu.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,10 +10,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.validation.Valid;
 import my.gcu.models.UserModel;
+import my.gcu.services.RegisterService;
 
 @Controller
 public class RegisterController
 {
+    @Autowired private RegisterService registerServiceBean;
+
     @GetMapping("/register")
     public String register(Model model)
     {
@@ -32,9 +36,8 @@ public class RegisterController
             return "register";
         }
 
-        // Prints out user's username and password upon successful login in the console
-        System.out.println(String.format("Form with a Username of %s and Password of %s", userModel.getUsername(), userModel.getPassword()));
-
+        registerServiceBean.addUser(userModel);
+    
         // Redirect to login after successful registration
         return "redirect:/login";
     }

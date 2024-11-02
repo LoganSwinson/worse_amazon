@@ -17,4 +17,10 @@ public class SpringConfig
     {
         return new ProductService();
     }
+
+    @Bean(name="registerService", initMethod="init", destroyMethod="destroy")
+    public RegisterService getRegisterService()
+    {
+        return new RegisterService();
+    }
 }

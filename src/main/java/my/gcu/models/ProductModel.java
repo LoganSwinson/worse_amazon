@@ -5,7 +5,8 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import my.gcu.data.entity.ProductEntity;
 
-public class ProductModel {
+public class ProductModel
+{
     private Integer id;
     private static Integer maxId;
     @NotEmpty(message = "Product name is required")
@@ -21,6 +22,8 @@ public class ProductModel {
 
     public ProductModel(String name, double price, String description, Integer quantity)
     {
+        if (maxId == null)
+            maxId = 0;
         this.id = ++maxId;
         this.name = name;
         this.price = price;
@@ -28,16 +31,16 @@ public class ProductModel {
         this.quantity = quantity;
     }
     
-    public ProductModel(ProductEntity productEnt)
+    public ProductModel(ProductEntity product)
     {
-        this.id = productEnt.getId();
-        this.name = productEnt.getName();
-        this.price = productEnt.getPrice();
-        this.description = productEnt.getDescription();
-        this.quantity = productEnt.getQuantity();
+        this.id = product.getId();
+        this.name = product.getName();
+        this.price = product.getPrice();
+        this.description = product.getDescription();
+        this.quantity = product.getQuantity();
 
-        if (productEnt.getId() > maxId)
-            maxId = productEnt.getId();
+        if (product.getId() > maxId)
+            maxId = product.getId();
     }
 
     // Getters and Setters
@@ -48,11 +51,6 @@ public class ProductModel {
     public static void setMaxId(Integer newMaxId)
     {
         maxId = newMaxId;
-    }
-
-    public void updateId()
-    {
-        this.id = ++maxId;
     }
 
     public String getName() {

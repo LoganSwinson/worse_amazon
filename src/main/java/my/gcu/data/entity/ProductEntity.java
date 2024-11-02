@@ -2,10 +2,6 @@ package my.gcu.data.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
-
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
 import my.gcu.models.ProductModel;
 
 @Table("PRODUCTS")
@@ -18,21 +14,15 @@ public class ProductEntity
     private String description;
     private int quantity;
 
-    public ProductEntity()
-    {
-        this.id = -1;
-        this.name = "ERROR";
-        this.price = -1;
-        this.quantity = -1;
-    }
+    public ProductEntity() {}
 
-    public ProductEntity(ProductModel productMod)
+    public ProductEntity(ProductModel product)
     {
-        this.id = productMod.getId();
-        this.name = productMod.getName();
-        this.price = productMod.getPrice();
-        this.description = productMod.getDescription();
-        this.quantity = productMod.getQuantity();
+        this.id = product.getId();
+        this.name = product.getName();
+        this.price = product.getPrice();
+        this.description = product.getDescription();
+        this.quantity = product.getQuantity();
     }
 
     /**

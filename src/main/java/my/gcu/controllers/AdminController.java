@@ -44,7 +44,7 @@ public class AdminController
         }
 
         // This allows the products to be printed to the screen by Thymeleaf
-        product.updateId();
+
         productServiceBean.addProduct(product);
         model.addAttribute("productList", productServiceBean.getProductList());
 

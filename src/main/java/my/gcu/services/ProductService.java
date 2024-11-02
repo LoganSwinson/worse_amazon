@@ -13,12 +13,11 @@ import my.gcu.models.ProductModel;
 public class ProductService implements ServiceInterface
 {   
     @Autowired
-    private ProductRepository productRepository;
+    private ProductRepository productRepo;
 
     @Override
     public void init()
     {
-        ProductModel.setMaxId(0);
         return;
     }
 
@@ -30,13 +29,13 @@ public class ProductService implements ServiceInterface
 
     public void addProduct(ProductModel product)
     {
-        productRepository.save(new ProductEntity(product));
+        productRepo.save(new ProductEntity(product));
     }
 
     public List<ProductModel> getProductList()
     {
         var productList = new ArrayList<ProductModel>();
-        var productEntities = productRepository.findAll();
+        var productEntities = productRepo.findAll();
 
         for (ProductEntity entity : productEntities)
         {
@@ -50,7 +49,7 @@ public class ProductService implements ServiceInterface
     {
         int maxId = 0;
         
-        var productEntities = productRepository.findAll();
+        var productEntities = productRepo.findAll();
 
         for (ProductEntity entity : productEntities)
         {

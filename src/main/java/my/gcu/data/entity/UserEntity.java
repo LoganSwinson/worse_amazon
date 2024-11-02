@@ -1,48 +1,24 @@
-package my.gcu.models;
+package my.gcu.data.entity;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import my.gcu.data.entity.UserEntity;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
+import my.gcu.models.UserModel;
 
-public class UserModel
-{   
+@Table("USERS")
+public class UserEntity
+{
+    @Id
     private Integer id;
-    public static Integer maxId;
-    @NotNull(message="First Name is a required field")
-    @Size(min=1, max=32, message="First Name must be between 1-32 characters long")
     private String firstName;
-    @NotNull(message="Last Name is a required field")
-    @Size(min=1, max=32, message="Last Name must be between 1-32 characters long")
     private String lastName;
-    @NotNull(message="Username is a required field")
-    @Size(min=3, max=32, message="Username must be between 3-32 characters long")
     private String username;
-    @NotNull(message="Password is a required field")
-    @Size(min=5, max=32, message="Password must be between 5-32 characters long")
     private String password;
-    @NotNull(message="E-Mail is a required field")
-    @Size(min=1, max=32, message="E-Mail must be between 1-32 characters long")
     private String emailAddress;
-    @NotNull(message="Phone Number is a required field")
-    @Size(min=1, max=32, message="Phone Number must be between 1-32 characters long")
     private String phoneNumber;
 
-    public UserModel(String firstName, String lastName, String userName, String password, String emailAddress, String phoneNumber)
-    {
-        if (maxId == null)
-            maxId = 0;
-        this.id = ++maxId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = userName;
-        this.password = password;
-        this.emailAddress = emailAddress;
-        this.phoneNumber = phoneNumber;
-    }
+    public UserEntity() {}
 
-    public UserModel() {}
-
-    public UserModel(UserEntity user)
+    public UserEntity(UserModel user)
     {
         this.id = user.getId();
         this.firstName = user.getFirstName();
@@ -53,18 +29,17 @@ public class UserModel
         this.phoneNumber = user.getPhoneNumber();
     }
 
-    public static void setMaxId(int newMax)
-    {
-        maxId = newMax;
-    }
-
-    public Integer getId()
-    {
+    /**
+     * @return Integer return the id
+     */
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id)
-    {
+    /**
+     * @param id the id to set
+     */
+    public void setId(Integer id) {
         this.id = id;
     }
 
