@@ -2,7 +2,6 @@ package my.gcu.data.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
-
 import my.gcu.models.ProductModel;
 
 @Table("PRODUCTS")
@@ -29,64 +28,74 @@ public class ProductEntity
     /**
      * @return Integer return the id
      */
-    public Integer getId() {
+    public Integer getId()
+    {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(Integer id) {
+    public void setId(Integer id)
+    {
         this.id = id;
     }
 
     /**
      * @return String return the productName
      */
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
     /**
      * @param productName the productName to set
      */
-    public void setName(String productName) {
+    public void setName(String productName)
+    {
         this.name = productName;
     }
 
     /**
      * @return double return the price
      */
-    public double getPrice() {
+    public double getPrice()
+    {
         return price;
     }
 
     /**
      * @param price the price to set
      */
-    public void setPrice(double price) {
+    public void setPrice(double price)
+    {
         this.price = price;
     }
 
-    public String getDescription() {
+    public String getDescription()
+    {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(String description)
+    {
         this.description = description;
     }
 
     /**
      * @return Integer return the quantity
      */
-    public Integer getQuantity() {
+    public Integer getQuantity()
+    {
         return quantity;
     }
 
     /**
      * @param quantity the quantity to set
      */
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(Integer quantity)
+    {
         this.quantity = quantity;
     }
 

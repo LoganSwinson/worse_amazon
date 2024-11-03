@@ -29,8 +29,6 @@ public class UserModel
 
     public UserModel(String firstName, String lastName, String userName, String password, String emailAddress, String phoneNumber)
     {
-        if (maxId == null)
-            maxId = 0;
         this.id = ++maxId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -40,7 +38,12 @@ public class UserModel
         this.phoneNumber = phoneNumber;
     }
 
-    public UserModel() {}
+    public UserModel(){}
+
+    public static void init(int idCount)
+    {
+        maxId = idCount;
+    }
 
     public UserModel(UserEntity user)
     {

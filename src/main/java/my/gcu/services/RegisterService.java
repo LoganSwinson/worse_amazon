@@ -15,6 +15,7 @@ public class RegisterService implements ServiceInterface
     @Override
     public void init()
     {
+        UserModel.init((int)userRepo.count());
         return;
     }
 

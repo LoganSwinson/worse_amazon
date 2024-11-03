@@ -22,8 +22,6 @@ public class ProductModel
 
     public ProductModel(String name, double price, String description, Integer quantity)
     {
-        if (maxId == null)
-            maxId = 0;
         this.id = ++maxId;
         this.name = name;
         this.price = price;
@@ -42,33 +40,45 @@ public class ProductModel
         if (product.getId() > maxId)
             maxId = product.getId();
     }
+    
+    public static void init(int idCount)
+    {
+        maxId = idCount;
+    }
 
     // Getters and Setters
-    public Integer getId() {
+    public Integer getId()
+    {
         return id;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name)
+    {
         this.name = name;
     }
 
-    public double getPrice() {
+    public double getPrice()
+    {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(double price)
+    {
         this.price = price;
     }
 
-    public String getDescription() {
+    public String getDescription()
+    {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(String description)
+    {
         this.description = description;
     }
 

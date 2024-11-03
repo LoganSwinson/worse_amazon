@@ -32,98 +32,112 @@ public class UserEntity
     /**
      * @return Integer return the id
      */
-    public Integer getId() {
+    public Integer getId()
+    {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(Integer id) {
+    public void setId(Integer id)
+    {
         this.id = id;
     }
 
     /**
      * @return String return the firstName
      */
-    public String getFirstName() {
+    public String getFirstName()
+    {
         return firstName;
     }
 
     /**
      * @param firstName the firstName to set
      */
-    public void setFirstName(String firstName) {
+    public void setFirstName(String firstName)
+    {
         this.firstName = firstName;
     }
 
     /**
      * @return String return the lastName
      */
-    public String getLastName() {
+    public String getLastName()
+    {
         return lastName;
     }
 
     /**
      * @param lastName the lastName to set
      */
-    public void setLastName(String lastName) {
+    public void setLastName(String lastName)
+    {
         this.lastName = lastName;
     }
 
     /**
      * @return String return the userName
      */
-    public String getUsername() {
+    public String getUsername()
+    {
         return username;
     }
 
     /**
      * @param userName the userName to set
      */
-    public void setUsername(String userName) {
+    public void setUsername(String userName)
+    {
         this.username = userName;
     }
 
     /**
      * @return String return the password
      */
-    public String getPassword() {
+    public String getPassword()
+    {
         return password;
     }
 
     /**
      * @param password the password to set
      */
-    public void setPassword(String password) {
+    public void setPassword(String password)
+    {
         this.password = password;
     }
 
     /**
      * @return String return the emailAddress
      */
-    public String getEmailAddress() {
+    public String getEmailAddress()
+    {
         return emailAddress;
     }
 
     /**
      * @param emailAddress the emailAddress to set
      */
-    public void setEmailAddress(String emailAddress) {
+    public void setEmailAddress(String emailAddress)
+    {
         this.emailAddress = emailAddress;
     }
 
     /**
      * @return String return the phoneNumber
      */
-    public String getPhoneNumber() {
+    public String getPhoneNumber()
+    {
         return phoneNumber;
     }
 
     /**
      * @param phoneNumber the phoneNumber to set
      */
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber)
+    {
         this.phoneNumber = phoneNumber;
     }
 

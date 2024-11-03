@@ -27,6 +27,7 @@ public class AdminController
         model.addAttribute("title", "Admin Page");
         // Add a new Product object to the model
         model.addAttribute("product", new ProductModel());
+        model.addAttribute("productList", productServiceBean.getProductList());
         
         return "admin";
     }
