@@ -8,10 +8,8 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan({ "my.gcu" })
 public class WorseAmazonApplication
 {
-
 	public static void main(String[] args)
 	{
 		SpringApplication.run(WorseAmazonApplication.class, args);
 	}
-
 }
