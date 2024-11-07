@@ -18,7 +18,6 @@ public class ProductService implements ServiceInterface
     @Override
     public void init()
     {
-        ProductModel.init((int)productRepo.count());
         return;
     }
 

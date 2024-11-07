@@ -8,7 +8,6 @@ import my.gcu.data.entity.ProductEntity;
 public class ProductModel
 {
     private Integer id;
-    private static Integer maxId;
     @NotEmpty(message = "Product name is required")
     private String name;
     @Positive(message = "Price must be positive")
@@ -22,7 +21,7 @@ public class ProductModel
 
     public ProductModel(String name, double price, String description, Integer quantity)
     {
-        this.id = ++maxId;
+        this.id = 0;
         this.name = name;
         this.price = price;
         this.description = description;
@@ -36,16 +35,8 @@ public class ProductModel
         this.price = product.getPrice();
         this.description = product.getDescription();
         this.quantity = product.getQuantity();
-
-        if (product.getId() > maxId)
-            maxId = product.getId();
     }
     
-    public static void init(int idCount)
-    {
-        maxId = idCount;
-    }
-
     // Getters and Setters
     public Integer getId()
     {

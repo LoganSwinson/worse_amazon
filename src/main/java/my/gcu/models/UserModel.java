@@ -7,7 +7,6 @@ import my.gcu.data.entity.UserEntity;
 public class UserModel
 {   
     private Integer id;
-    public static Integer maxId;
     @NotNull(message="First Name is a required field")
     @Size(min=1, max=32, message="First Name must be between 1-32 characters long")
     private String firstName;
@@ -29,7 +28,7 @@ public class UserModel
 
     public UserModel(String firstName, String lastName, String userName, String password, String emailAddress, String phoneNumber)
     {
-        this.id = ++maxId;
+        this.id = 0;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = userName;
@@ -40,11 +39,6 @@ public class UserModel
 
     public UserModel(){}
 
-    public static void init(int idCount)
-    {
-        maxId = idCount;
-    }
-
     public UserModel(UserEntity user)
     {
         this.id = user.getId();
@@ -54,9 +48,6 @@ public class UserModel
         this.password = user.getPassword();
         this.emailAddress = user.getEmailAddress();
         this.phoneNumber = user.getPhoneNumber();
-
-        if (this.id > maxId)
-            maxId = this.id;
     }
 
     public Integer getId()
