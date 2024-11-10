@@ -20,18 +20,25 @@
                     <th style="text-align:center">Price</th>
                     <th style="text-align:center">Description</th>
                     <th style="text-align:center">Quantity</th>
-                <th>
+                    <th style="text-align:center">Actions</th> 
+                </tr>
             </thead>
             <tbody>
                 <tr th:if="${#lists.isEmpty(productList)}">
-                    <td style="text-align: center" colspan="4"> No Orders Available </td>
+                    <td style="text-align: center" colspan="6"> No Products Available </td>
                 </tr>
-                    <tr th:each="product : ${productList}">
+                <tr th:each="product : ${productList}">
                     <td style="text-align:center"><h5 th:text="${product.id}"></h5></td>
                     <td style="text-align:center"><h5 th:text="${product.name}"></h5></td>
                     <td style="text-align:center"><h5 th:text="${product.price}"></h5></td>
                     <td style="text-align:center"><h5 th:text="${product.description}"></h5></td>
                     <td style="text-align:center"><h5 th:text="${product.quantity}"></h5></td>
+                    <td style="text-align:center">
+                        <!-- Delete button that submits to delete endpoint -->
+                        <form th:action="@{/admin/deleteProduct/{id}(id=${product.id})}" method="post">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             </tbody>
         </table>

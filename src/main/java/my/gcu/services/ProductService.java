@@ -44,4 +44,9 @@ public class ProductService implements ServiceInterface
 
         return productList;
     }
+
+    public void deleteProductById(Integer id)
+    {
+        productRepo.deleteById(id);
+    }
 }
