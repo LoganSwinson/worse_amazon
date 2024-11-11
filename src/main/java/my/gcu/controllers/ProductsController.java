@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import my.gcu.services.ProductService;
 import my.gcu.services.LoginService;
-import my.gcu.services.ProductService;
 
 @Controller
 public class ProductsController 
