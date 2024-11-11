@@ -6,18 +6,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import my.gcu.services.LoginService;
+import my.gcu.services.ProductService;
 
 @Controller
-public class ProductsController 
-{
-    @Autowired private LoginService loginServiceBean;
-    
+public class ProductsController {
+
+    @Autowired
+    private LoginService loginServiceBean;
+
+    @Autowired
+    private ProductService productService; 
+
     @GetMapping("products")
-    public String home(Model model)
-    {
+    public String displayProducts(Model model) {
         model.addAttribute("title", "Products");
-        // The loginServiceBean from login is reused to check if the user has successfully completed a login before
         model.addAttribute("isLoggedIn", loginServiceBean.getIsLoggedIn());
+        model.addAttribute("productList", productService.getProductList()); // Correct variable name here
         return "products";
     }
 }
