@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import jakarta.validation.Valid;
 import my.gcu.models.ProductModel;
 import my.gcu.services.LoginService;
@@ -26,7 +26,7 @@ public class AdminController
         // The loginServiceBean from login is reused to check if the user has logged in as an admin before
         model = loginServiceBean.modelCheckAdmin(model);
         model.addAttribute("title", "Admin Page");
-        // Add a new Product object to the model
+        // Add an empty product to use for creation or updates
         model.addAttribute("product", new ProductModel());
         model.addAttribute("productList", productServiceBean.getProductList());
         
@@ -45,12 +45,18 @@ public class AdminController
             return "admin";
         }
 
-        // This allows the products to be printed to the screen by Thymeleaf
-
+        // The save method from the Crud Repository will also update a product if an ID has already been used
         productServiceBean.addProduct(product);
+        // Used to display products
         model.addAttribute("productList", productServiceBean.getProductList());
 
         return "admin";
+    }
+
+    @PostMapping("/admin/updateProduct")
+    public String updateProduct(@Valid @ModelAttribute("product") ProductModel product, BindingResult result, Model model)
+    {
+        return createProduct(product, result, model);
     }
 
     @PostMapping("/admin/deleteProduct/{id}")

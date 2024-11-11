@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import my.gcu.data.entity.ProductEntity;
-import my.gcu.data.entity.repository.ProductRepository;
+import my.gcu.data.repository.ProductRepository;
 import my.gcu.interfaces.ServiceInterface;
 import my.gcu.models.ProductModel;
 

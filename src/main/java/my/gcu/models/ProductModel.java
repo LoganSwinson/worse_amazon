@@ -18,15 +18,6 @@ public class ProductModel
 
     // Constructors
     public ProductModel() {}
-
-    public ProductModel(String name, double price, String description, Integer quantity)
-    {
-        this.id = 0;
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.quantity = quantity;
-    }
     
     public ProductModel(ProductEntity product)
     {
@@ -41,6 +32,11 @@ public class ProductModel
     public Integer getId()
     {
         return id;
+    }
+
+    public void setId(Integer id)
+    {
+        this.id = id;
     }
 
     public String getName()
