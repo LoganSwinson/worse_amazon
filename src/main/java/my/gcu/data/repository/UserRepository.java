@@ -1,4 +1,4 @@
-package my.gcu.data.entity.repository;
+package my.gcu.data.repository;
 
 import java.util.Optional;
 

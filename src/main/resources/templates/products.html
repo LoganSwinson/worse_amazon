@@ -2,11 +2,30 @@
 <html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layouts/defaultTemplate}">
 <body>
     <div layout:fragment="content">
-        <h1 align="center">Our Products!</h1>
-
         <div th:if = "${isLoggedIn}">
-            <p align="center">You have successfully logged in.</p>
+        <h1 align="center">Our Products!</h1>
+        <table id="product-form">
+            <thead>
+                <th style="text-align:center">Name</th>
+                <th style="text-align:center">Price</th>
+                <th style="text-align:center">Description</th>
+                <th style="text-align:center">Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${#lists.isEmpty(productList)}">
+                    <td style="text-align: center" colspan="4"> No Products Available </td>
+                </tr>
+                <tr th:each="product : ${productList}">
+                    <td style="text-align:left"><h5 th:text="${product.name}"></h5></td>
+                    <td style="text-align:left"><h5 th:text="${product.price}"></h5></td>
+                    <td style="text-align:left"><h5 th:text="${product.description}"></h5></td>
+                    <td style="text-align:left"><h5 th:text="${product.quantity}"></h5></td>
+                </tr>
+            </tbody>
+        </table>
         </div>
+        <h1 th:unless="${isLoggedIn}" style="text-align:center">You are not logged in yet!</h1>
     </div>
 </body>
 </html>

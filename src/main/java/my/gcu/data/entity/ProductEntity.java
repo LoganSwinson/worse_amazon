@@ -25,41 +25,26 @@ public class ProductEntity
         this.quantity = product.getQuantity();
     }
 
-    /**
-     * @return Integer return the id
-     */
     public Integer getId()
     {
         return id;
     }
 
-    /**
-     * @param id the id to set
-     */
     public void setId(Integer id)
     {
         this.id = id;
     }
 
-    /**
-     * @return String return the productName
-     */
     public String getName()
     {
         return name;
     }
 
-    /**
-     * @param productName the productName to set
-     */
     public void setName(String productName)
     {
         this.name = productName;
     }
 
-    /**
-     * @return double return the price
-     */
     public double getPrice()
     {
         return price;
@@ -83,20 +68,13 @@ public class ProductEntity
         this.description = description;
     }
 
-    /**
-     * @return Integer return the quantity
-     */
     public Integer getQuantity()
     {
         return quantity;
     }
 
-    /**
-     * @param quantity the quantity to set
-     */
     public void setQuantity(Integer quantity)
     {
         this.quantity = quantity;
     }
-
 }

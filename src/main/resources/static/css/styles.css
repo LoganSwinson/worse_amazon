@@ -6,6 +6,10 @@ html, body {
     font-family: Arial, sans-serif;
 }
 
+#tooLong {
+    height: auto;
+}
+
 /* Style the navbar */
 .navbar {
     background-color: #343a40;
@@ -23,11 +27,11 @@ html, body {
 .form-container {
     display: flex;
     justify-content: center; /* Horizontally center the form */
-    padding-top: 50px; /* Add some padding from the top */
+    padding-top: 5px; /* Add some padding from the top */
 }
 
 /* Customize form styling */
-form {
+form, #product-form{
     text-align: center;
     padding: 20px;
     display: inline-block;
@@ -35,6 +39,8 @@ form {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
     color: white;
     background-color: rgba(0, 0, 0, 0.5);
+    border-collapse: separate;
+    border-spacing: 10px;
 }
 
 /* Input field styles */
@@ -48,7 +54,7 @@ form input[type="text"], form input[type="password"] {
 }
 
 /* Submit button styling */
-form button {
+form button, #form-button {
     background-color: #343a40;
     color: white;
     border: none;
@@ -70,4 +76,26 @@ form input[type="text"], form input[type="number"], form textarea {
 form textarea {
     resize: vertical;
     height: 60px;
+}
+
+#id-style {
+    padding-left: 2px;
+    padding-right: 2px;
+    background-color: #121212;
+    border-color: rgb(133, 133, 133);
+    border-radius: 1px;
+    border-style: double;
+    color: white;
+}
+
+#product-form {
+    display:table;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#form-button {
+    padding: 5px 15px;
 }

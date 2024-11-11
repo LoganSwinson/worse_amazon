@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
 import my.gcu.data.entity.UserEntity;
-import my.gcu.data.entity.repository.UserRepository;
+import my.gcu.data.repository.UserRepository;
 import my.gcu.interfaces.ServiceInterface;
 import my.gcu.models.LoginModel;
 
