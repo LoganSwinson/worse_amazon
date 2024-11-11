@@ -32,16 +32,14 @@ public class ProductService implements ServiceInterface
         productRepo.save(new ProductEntity(product));
     }
 
-    public List<ProductModel> getProductList()
-    {
+    public List<ProductModel> getProductList() {
         var productList = new ArrayList<ProductModel>();
         var productEntities = productRepo.findAll();
-
-        for (ProductEntity entity : productEntities)
-        {
+    
+        for (ProductEntity entity : productEntities) {
             productList.add(new ProductModel(entity));
         }
-
+    
         return productList;
     }
 
