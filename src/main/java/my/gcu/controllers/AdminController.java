@@ -32,8 +32,8 @@ public class AdminController
         return "admin";
     }
 
-    @PostMapping("/admin/createProduct")
-    public String createProduct(@Valid @ModelAttribute("product") ProductModel product, BindingResult result, Model model)
+    @PostMapping("/admin/createOrUpdateProduct")
+    public String createOrUpdateProduct(@Valid @ModelAttribute("product") ProductModel product, BindingResult result, Model model)
     {
         // The login needs to be verified everytime the page is rerendered by thymeleaf
         model = loginServiceBean.modelCheckAdmin(model);
@@ -41,6 +41,7 @@ public class AdminController
         if (result.hasErrors())
         {   System.out.println("\nERROR");
             model.addAttribute("title", "Admin Page");
+            model.addAttribute("productList", productServiceBean.getProductList());
             return "admin";
         }
 
@@ -50,12 +51,6 @@ public class AdminController
         model.addAttribute("productList", productServiceBean.getProductList());
 
         return "admin";
-    }
-
-    @PostMapping("/admin/updateProduct")
-    public String updateProduct(@Valid @ModelAttribute("product") ProductModel product, BindingResult result, Model model)
-    {
-        return createProduct(product, result, model);
     }
 
     @PostMapping("/admin/deleteProduct/{id}")
