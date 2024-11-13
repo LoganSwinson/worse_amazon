@@ -24,7 +24,7 @@
                             <td style="text-align: center" colspan="4"> No Products Available </td>
                         </tr>
                         <tr th:each="product : ${productList}">
-                        <form th:action="@{/admin/updateProduct}" th:object="${product}" method="post" style="background-color:transparent; box-shadow: none;">
+                        <form th:action="@{/admin/createOrUpdateProduct}" th:object="${product}" method="post" style="background-color:transparent; box-shadow: none;">
                             <td style="text-align:center"><button type="submit" id="form-button">Update</button></td>
 
                             <!-- The input is "invisible" so that the admin cannot change the id & the id is displayed below -->
@@ -50,11 +50,11 @@
                 <!-- ADDING PRODUCTS -->
                 <h2 align="center">Add Product:</h2>
                 <div class="form-container">
-                    <form th:action="@{/admin/createProduct}" th:object="${product}" method="post">
+                    <form th:action="@{/admin/createOrUpdateProduct}" th:object="${product}" method="post">
                         <table>
                             <tr>
                                 <td>Product Name:</td>
-                                <td><input type="text" th:field="*{name}" placeholder="Enter product name" required /></td>
+                                <td><input type="text" th:field="*{name}" placeholder="Enter product name" required/></td>
                                 <td><h5 style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></h5></td>
                             </tr>
                             <tr>
