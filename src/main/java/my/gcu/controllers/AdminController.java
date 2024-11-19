@@ -22,26 +22,32 @@ public class AdminController
     @GetMapping("/admin")
     public String home(Model model)
     {
-        // The loginServiceBean from login is reused to check if the user has logged in as an admin before
-        model = loginServiceBean.modelCheckAdmin(model);
-        model.addAttribute("title", "Admin Page");
-        // Add an empty product to use for creation or updates
-        model.addAttribute("product", new ProductModel());
-        model.addAttribute("productList", productServiceBean.getProductList());
+        model = setDefaultAttributes(model);
         
         return "admin";
     }
 
-    @PostMapping("/admin/createOrUpdateProduct")
-    public String createOrUpdateProduct(@Valid @ModelAttribute("product") ProductModel product, BindingResult result, Model model)
+    Model setDefaultAttributes(Model model)
     {
-        // The login needs to be verified everytime the page is rerendered by thymeleaf
+        // The loginServiceBean from login is reused to check if the user has logged in as an admin before
         model = loginServiceBean.modelCheckAdmin(model);
+        model.addAttribute("title", "Admin Page");
+
+        // Adds empty products to use for creation or updates
+        model.addAttribute("newProduct", new ProductModel());
+        model.addAttribute("updatedProduct", new ProductModel());
+        model.addAttribute("productList", productServiceBean.getProductList());
+
+        return model;
+    }
+
+    public String createOrUpdateProduct(ProductModel product, BindingResult result, Model model)
+    {
+        model = setDefaultAttributes(model);
+
         // If errors occur, return to the product creation page
         if (result.hasErrors())
         {   System.out.println("\nERROR");
-            model.addAttribute("title", "Admin Page");
-            model.addAttribute("productList", productServiceBean.getProductList());
             return "admin";
         }
 
@@ -51,6 +57,18 @@ public class AdminController
         model.addAttribute("productList", productServiceBean.getProductList());
 
         return "admin";
+    }
+
+    @PostMapping("/admin/createProduct")
+    public String createProduct(@Valid @ModelAttribute("newProduct") ProductModel product, BindingResult result, Model model)
+    {
+        return createOrUpdateProduct(product, result, model);
+    }
+
+    @PostMapping("/admin/updateProduct")
+    public String updateProduct(@Valid @ModelAttribute("updatedProduct") ProductModel product, BindingResult result, Model model)
+    {
+        return createOrUpdateProduct(product, result, model);
     }
 
     @PostMapping("/admin/deleteProduct/{id}")
