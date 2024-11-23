@@ -15,18 +15,18 @@ import my.gcu.services.LoginService;
 @Controller
 public class LoginController
 {
-    @Autowired private LoginService loginServiceBean;
+   /*  @Autowired private LoginService loginServiceBean; */
 
     @GetMapping("/login")
     public String display(Model model)
     {
         model.addAttribute("title", "Login Form");
-        model.addAttribute("loginModel", new LoginModel());
-        model.addAttribute("loginServiceBean", loginServiceBean);
+        /* model.addAttribute("loginModel", new LoginModel());
+        model.addAttribute("loginServiceBean", loginServiceBean); */
         return "login";  // Return the login.html template
     }
 
-    @PostMapping("/doLogin")
+/*     @PostMapping("/doLogin")
 public String doLogin(@Valid @ModelAttribute("loginModel") LoginModel loginModel, BindingResult bindingResult, Model model) {
     // Call validateLogin to check login credentials and add errors if necessary
     String resultPage = loginServiceBean.validateLogin(bindingResult, loginModel);
@@ -40,7 +40,7 @@ public String doLogin(@Valid @ModelAttribute("loginModel") LoginModel loginModel
 
     // If login is successful, redirect to the target page (either "admin" or "products")
     return "redirect:/" + resultPage;
-}
+} */
 
     
 }

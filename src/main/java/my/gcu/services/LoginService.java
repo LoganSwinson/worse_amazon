@@ -50,7 +50,8 @@ public class LoginService implements ServiceInterface
             isLoggedIn = true;
 
             // Check if the username is "admin" to assign admin privileges
-            if ("admin".equalsIgnoreCase(user.get().getUsername())) {
+            if ("admin".equalsIgnoreCase(user.get().getUsername()))
+            {
                 isAdmin = true;
                 return "admin";  
             }
@@ -65,7 +66,6 @@ public class LoginService implements ServiceInterface
             return "login";
     }
     
-
     public Model modelCheckAdmin(Model model)
     {
         model.addAttribute("isAdmin", this.getIsAdmin());
