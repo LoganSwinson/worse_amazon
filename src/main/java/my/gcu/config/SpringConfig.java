@@ -1,7 +1,11 @@
-package my.gcu.services;
+package my.gcu.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import my.gcu.services.LoginService;
+import my.gcu.services.ProductService;
+import my.gcu.services.RegisterService;
 
 @Configuration
 public class SpringConfig
