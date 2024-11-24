@@ -22,6 +22,7 @@ public class UserEntity
     public UserEntity(UserModel user)
     {
         this.id = user.getId();
+        this.role = user.getRole();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.username = user.getUsername();
