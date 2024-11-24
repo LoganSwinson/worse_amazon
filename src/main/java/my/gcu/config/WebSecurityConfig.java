@@ -7,33 +7,42 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
+import my.gcu.services.UserService;
+
 @Configuration
 public class WebSecurityConfig
 {
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception
-    {
-        http
-        .csrf(csrf -> csrf.disable())
+    private final UserService userService;
 
-        .authorizeHttpRequests(auth -> auth
-            .requestMatchers("/","/images/**","/service/**").permitAll()
-            .requestMatchers("/userInfo").hasAnyRole("USER","ADMIN")
-            .anyRequest().authenticated())
-        
-        .formLogin(form -> form
-            .loginPage("/login")
-            .usernameParameter("username")
-            .passwordParameter("password")
-            .permitAll()
-            .defaultSuccessUrl("/products", true))
-        
-        .logout(logout -> logout
-            .logoutUrl("/logout")
-            .invalidateHttpSession(true)
-            .clearAuthentication(true)
-            .permitAll()
-            .logoutSuccessUrl("/"));
+     // Constructor-based dependency injection for UserService
+     public WebSecurityConfig(UserService userService) 
+     {
+        this.userService = userService;
+     }  
+
+ @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+            .csrf(csrf -> csrf.disable())
+
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/", "/images/**", "/service/**", "/register", "/login").permitAll() 
+                .requestMatchers("/userInfo").hasAnyRole("USER", "ADMIN") 
+                .anyRequest().authenticated()) 
+            
+            .formLogin(form -> form
+                .loginPage("/login") 
+                .usernameParameter("username")
+                .passwordParameter("password") 
+                .permitAll()
+                .defaultSuccessUrl("/products", true)) 
+            
+            .logout(logout -> logout
+                .logoutUrl("/logout") 
+                .invalidateHttpSession(true) 
+                .clearAuthentication(true)
+                .permitAll()
+                .logoutSuccessUrl("/")); 
 
         return http.build();
     }
