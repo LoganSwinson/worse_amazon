@@ -9,6 +9,7 @@ public class UserEntity
 {
     @Id
     private Integer id;
+    private String role;
     private String firstName;
     private String lastName;
     private String username;
@@ -43,6 +44,14 @@ public class UserEntity
     public void setId(Integer id)
     {
         this.id = id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     /**

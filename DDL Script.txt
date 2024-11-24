@@ -50,6 +50,7 @@ DROP TABLE IF EXISTS `USERS`;
 CREATE TABLE `USERS`
 (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `ROLE` varchar(5) NOT NULL,
   `FIRST_NAME` varchar(128) NOT NULL,
   `LAST_NAME` varchar(128) NOT NULL,
   `USERNAME` varchar(128) NOT NULL,
@@ -75,5 +76,5 @@ ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 --
 
 LOCK TABLES `USERS` WRITE;
-INSERT INTO `USERS` VALUES (1,' ',' ','admin','12345', ' ', ' '), (2, 'Bruce', 'Wayne', 'I_AM_BATMAN', 'robin', 'batRulez@hotmail.com', 'N/A');
+INSERT INTO `USERS` VALUES (1, 'ADMIN', ' ',' ','admin','12345', ' ', ' '), (2, 'USER', 'Bruce', 'Wayne', 'I_AM_BATMAN', 'robin', 'batRulez@hotmail.com', 'N/A');
 UNLOCK TABLES;
