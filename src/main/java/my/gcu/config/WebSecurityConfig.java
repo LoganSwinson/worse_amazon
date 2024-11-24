@@ -17,7 +17,7 @@ public class WebSecurityConfig
         .csrf(csrf -> csrf.disable())
 
         .authorizeHttpRequests(auth -> auth
-            .requestMatchers("/","/images/**","/service/**").permitAll()
+            .requestMatchers("/login/**","/register/**","/styles.css/**","/css/**", "/js/**", "/images/**").permitAll()
             .requestMatchers("/userInfo").hasAnyRole("USER","ADMIN")
             .anyRequest().authenticated())
         
