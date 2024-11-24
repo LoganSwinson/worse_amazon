@@ -7,9 +7,13 @@
         <div class="form-container">
             <form action="#" th:action="@{/register}" th:object="${userModel}" method="post">
                 <table>
+                    <!-- Defaults to USER role for all registrations -->
+                    <tr>
+                        <td><input type="text" th:field="*{role}" th:value="USER" hidden="true"/></td>
+                    </tr>
                     <tr>
                         <td>First Name:</td>
-                        <td><input type="text" th:field="*{firstName}"></td>
+                        <td><input type="text" th:field="*{firstName}"/></td>
                         <td>
                             <h5 style="color:red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
                                 First Name Error</h5>

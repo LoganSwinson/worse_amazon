@@ -8,6 +8,7 @@ public class UserModel
 {   
     private Integer id;
     @NotNull(message="First Name is a required field")
+    private String role;
     @Size(min=1, max=32, message="First Name must be between 1-32 characters long")
     private String firstName;
     @NotNull(message="Last Name is a required field")
@@ -31,6 +32,7 @@ public class UserModel
     public UserModel(UserEntity user)
     {
         this.id = user.getId();
+        this.role = user.getRole();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.username = user.getUsername();
@@ -47,6 +49,14 @@ public class UserModel
     public void setId(int id)
     {
         this.id = id;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getFirstName() {
