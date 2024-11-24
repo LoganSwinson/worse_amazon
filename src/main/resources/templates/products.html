@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layouts/defaultTemplate}">
+<html xmlns:th="http://www.thymeleaf.org/" layout:decorate="~{layouts/defaultTemplate}">
 <body>
     <div layout:fragment="content">
-        <div th:if = "${isLoggedIn}">
         <h1 align="center">Our Products!</h1>
         <table id="product-form">
             <thead>
@@ -25,7 +24,6 @@
             </tbody>
         </table>
         </div>
-        <h1 th:unless="${isLoggedIn}" style="text-align:center">You are not logged in yet!</h1>
     </div>
 </body>
 </html>
