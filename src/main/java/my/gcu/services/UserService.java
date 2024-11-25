@@ -22,15 +22,16 @@ public class UserService implements UserDetailsService {
     // fetches the user from the database based on the provided username.
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // Looks for user in database using username
-        // If the user is not found, throw an exception
+        // Fetch user from the database
         UserEntity user = userRepository.findByUsername(username)
             .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-
+    
+        // Use the role from the database (assuming user.getRole() returns the correct role)
         return User.builder()
                 .username(user.getUsername())
-                .password(user.getPassword()) // Password is expected to be hashed
-                .roles("USER") 
+                .password(user.getPassword()) // Hashed password
+                .roles(user.getRole()) // Fetch the role from the database
                 .build();
     }
+    
 }

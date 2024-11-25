@@ -1,6 +1,8 @@
 package my.gcu.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import jakarta.validation.Valid;
 import my.gcu.models.ProductModel;
 import my.gcu.services.LoginService;
@@ -22,8 +25,22 @@ public class AdminController
     @GetMapping("/admin")
     public String home(Model model)
     {
-        model = setDefaultAttributes(model);
-        
+         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        // Check if the user is authenticated and has the ROLE_ADMIN authority
+        boolean isAdmin = authentication != null && authentication.getAuthorities().stream()
+                .anyMatch(authority -> authority.getAuthority().equals("ROLE_ADMIN"));
+
+        model.addAttribute("isAdmin", isAdmin); // Pass admin status to the view
+        model.addAttribute("title", "Admin Page");
+
+        if (isAdmin) {
+            // Add product-related attributes only for admins
+            model.addAttribute("newProduct", new ProductModel());
+            model.addAttribute("updatedProduct", new ProductModel());
+            model.addAttribute("productList", productServiceBean.getProductList());
+        }
+
         return "admin";
     }
 

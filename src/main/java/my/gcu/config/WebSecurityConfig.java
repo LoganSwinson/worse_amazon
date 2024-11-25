@@ -3,6 +3,7 @@ package my.gcu.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,32 +13,42 @@ import org.springframework.security.web.SecurityFilterChain;
 import my.gcu.services.UserService;
 
 @Configuration
-public class WebSecurityConfig
-{
-    private final UserService userService;
+public class WebSecurityConfig {
 
-     // Constructor-based dependency injection for UserService
-     public WebSecurityConfig(UserService userService) 
-     {
-        this.userService = userService;
-     }  
+    @Autowired
+    @Lazy
+    private UserService userService; 
 
- @Bean
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .csrf(csrf -> csrf.disable())
 
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/", "/images/**", "/service/**", "/register/**", "/login/**", "/css/**").permitAll() 
-                .requestMatchers("/userInfo").hasAnyRole("USER", "ADMIN") 
+                .requestMatchers("/userInfo").hasAnyRole("USER", "ADMIN")
+                .requestMatchers("/admin").hasRole("ADMIN") 
                 .anyRequest().authenticated()) 
             
             .formLogin(form -> form
-                .loginPage("/login") 
+                .loginPage("/login")
                 .usernameParameter("username")
-                .passwordParameter("password") 
+                .passwordParameter("password")
                 .permitAll()
-                .defaultSuccessUrl("/products", true)) 
+                .successHandler((request, response, authentication) -> {
+                    // Use a String array for mutability in lambda
+                    final String[] redirectUrl = { "/products" }; // Default redirect for non-admin users
+
+                    // Check user roles and set redirect URL
+                    authentication.getAuthorities().forEach(authority -> {
+                        if (authority.getAuthority().equals("ROLE_ADMIN")) {
+                            redirectUrl[0] = "/admin"; // Redirect admins to admin page
+                        }
+                    });
+
+                    // Perform the redirection
+                    response.sendRedirect(redirectUrl[0]);
+                }))
             
             .logout(logout -> logout
                 .logoutUrl("/logout") 
@@ -49,14 +60,12 @@ public class WebSecurityConfig
         return http.build();
     }
 
-@Autowired
-    public void configure(AuthenticationManagerBuilder auth) throws Exception
-    {
-        auth.inMemoryAuthentication()
-            .withUser("admin").password("{noop}12345").roles("ADMIN");      
+    @Autowired
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
     }
 
-     @Bean
+    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }

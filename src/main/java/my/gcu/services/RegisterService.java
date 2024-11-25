@@ -2,13 +2,14 @@ package my.gcu.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import my.gcu.data.entity.UserEntity;
 import my.gcu.data.repository.UserRepository;
 import my.gcu.interfaces.ServiceInterface;
 import my.gcu.models.UserModel;
 
+@Service
 public class RegisterService implements ServiceInterface
 {
     @Autowired
@@ -32,6 +33,9 @@ public class RegisterService implements ServiceInterface
     public void addUser(UserModel user)
     {
         user.setPassword(passEncoder.encode(user.getPassword()));
+    if (user.getRole() == null || user.getRole().isEmpty()) {
+        user.setRole("USER"); 
+    }
         userRepo.save(new UserEntity(user));
     }
 }
